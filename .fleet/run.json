@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "Flutter",
+            "program": "powershell",
+            // For Windows
+            "args": [
+                "flutter",
+                "run",
+                "--debug"
+            ],
+        },
+
+    ]
+}

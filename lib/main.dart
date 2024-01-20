@@ -1,27 +1,43 @@
 // ignore_for_file: prefer_const_constructors, unused_element
 
 import 'package:dossier/routes/accueil.dart';
+import 'package:dossier/services/authController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:window_manager/window_manager.dart';
 
+const supabaseUrl = 'https://iauzdwzywquyfissqgpc.supabase.co';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Window.initialize();
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = WindowOptions(
-    size: Size(800, 600),
+    // size: Get.size,
     center: true,
-    backgroundColor: Colors.transparent,
+    // backgroundColor: Colors.transparent,
     skipTaskbar: false,
     titleBarStyle: TitleBarStyle.normal,
+    title: 'Dossier'
   );
+
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
     await windowManager.focus();
   });
+  await Supabase.initialize(
+    url: supabaseUrl,
+    anonKey: dotenv.env['SUPABASE_KEY'] ?? "",
+  );
+  await Window.setEffect(
+    effect: WindowEffect.mica,
+    color: Color(0xCC222222),
+  );
+  Get.put(AuthController());
   runApp(const MyApp());
 }
 
@@ -38,7 +54,7 @@ class _MyAppState extends State<MyApp> with WindowListener {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Dossier',
-      initialRoute: '/',
+      initialRoute: '/', debugShowCheckedModeBanner: false,
       routes: {'/': (ctx) => Accueil()},
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
@@ -77,6 +93,7 @@ class _HomeState extends State<Home> with WindowListener {
 
   @override
   Widget build(BuildContext context) {
+    AuthController ac = Get.find();
     return Scaffold(
       drawer: Drawer(child: Container()),
       appBar: AppBar(
@@ -87,8 +104,8 @@ class _HomeState extends State<Home> with WindowListener {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              'data from supabase: ${ac.getData()}',
             ),
             Text(
               '$counter',

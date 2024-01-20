@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 class Parametres extends StatefulWidget {
   const Parametres({super.key});
@@ -8,8 +9,37 @@ class Parametres extends StatefulWidget {
 }
 
 class _ParametresState extends State<Parametres> {
+  open() {
+    WoltModalSheet.show(
+      pageIndexNotifier: 1,
+      context: context,
+      decorator: (child) {
+        return ChangeNotifierProvider<StoreOnlineViewModel>.value(
+          value: model,
+          builder: (_, __) => child,
+        );
+      },
+      pageListBuilder: AddWaterModalPageBuilder.build(
+        coffeeOrderId: coffeeOrderId,
+        goToPreviousPage: () =>
+            pageIndexNotifier.value = pageIndexNotifier.value - 1,
+        goToNextPage: () =>
+            pageIndexNotifier.value = pageIndexNotifier.value + 1,
+      ),
+      modalTypeBuilder: _modalTypeBuilder,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      child: Center(
+        child: ElevatedButton(
+            onPressed: () {
+              open();
+            },
+            child: Text('Donne')),
+      ),
+    );
   }
 }
