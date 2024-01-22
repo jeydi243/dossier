@@ -30,12 +30,13 @@ dependencies:
   palette_generator: ^0.3.3
   persistent_bottom_nav_bar: ^5.0.2
   iconify_flutter: ^0.0.5
-  syncfusion_flutter_calendar: ^23.1.40
   web_socket_channel: ^2.1.0
   supabase_flutter: ^1.10.22
   wolt_modal_sheet: ^0.1.4
   blurrycontainer: ^1.0.2    
   windows_notification: ^1.0.0
+  syncfusion_flutter_calendar: ^24.1.46
+  syncfusion_flutter_datagrid: ^24.1.46
   printing: ^5.11.1
   flutter_dotenv: ^5.1.0
 dev_dependencies:
@@ -45,6 +46,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  
 
   # To add assets to your application, add an assets section, like this:
   assets:

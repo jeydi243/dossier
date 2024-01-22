@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unused_element
 
+import 'package:dossier/routes/Participations/index.dart';
 import 'package:dossier/routes/accueil.dart';
 import 'package:dossier/services/authController.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +18,13 @@ Future<void> main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = WindowOptions(
-    // size: Get.size,
-    center: true,
-    // backgroundColor: Colors.transparent,
-    skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.normal,
-    title: 'Dossier'
-  );
+      // size: Get.size,
+      center: true,
+      // backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      windowButtonVisibility: false,
+      titleBarStyle: TitleBarStyle.normal,
+      title: 'Dossier');
 
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
@@ -55,7 +56,10 @@ class _MyAppState extends State<MyApp> with WindowListener {
     return GetMaterialApp(
       title: 'Dossier',
       initialRoute: '/', debugShowCheckedModeBanner: false,
-      routes: {'/': (ctx) => Accueil()},
+      routes: {
+        '/': (ctx) => Accueil(),
+        '/participations': (ctx) => IndexParticipation(),
+      },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         useMaterial3: true,

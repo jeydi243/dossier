@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
-// import 'package:iconify_flutter/icons/solar.dart';
 import 'package:colorful_iconify_flutter/icons/emojione.dart';
 
 class Accueil extends StatefulWidget {
@@ -55,6 +54,7 @@ class _AccueilState extends State<Accueil> {
                   ),
                   onTap: () {
                     Navigator.pop(context);
+                    Get.toNamed('/participations');
                   },
                 );
               }),
@@ -90,7 +90,7 @@ class _AccueilState extends State<Accueil> {
                                 blur: 5,
                                 elevation: 0,
                                 color: Colors.transparent,
-                                padding: const EdgeInsets.all(8),
+                                padding: EdgeInsets.all(8),
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
                               );
