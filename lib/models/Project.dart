@@ -1,4 +1,4 @@
-class Projet {
+class Project {
   late int project_id;
   late int row_key;
   late String project_code_name;
@@ -24,7 +24,7 @@ class Projet {
   late DateTime project_completion_date;
   late int project_category;
 
-  Projet(
+  Project(
       {required this.project_id,
       required this.row_key,
       required this.project_code_name,
