@@ -2,7 +2,7 @@
 
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:dossier/datasources/partenairesDS.dart';
-import 'package:dossier/models/partenaire.dart';
+import 'package:dossier/models/Partenaire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:get/get.dart';

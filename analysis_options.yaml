@@ -12,12 +12,13 @@ include: package:flutter_lints/flutter.yaml
 linter:
 
   rules:
-    - prefer_const_constructors: false
-    - prefer_const_constructors_in_immutables: false
-    - prefer_const_literals_to_create_immutables: false
-    - prefer_equal_for_default_values: false
-    - prefer_final_fields: false
-    - non_constant_identifier_names: false
+    prefer_const_constructors: false
+    prefer_const_constructors_in_immutables: false
+    prefer_const_literals_to_create_immutables: false
+    prefer_equal_for_default_values: false
+    prefer_final_fields: false
+    non_constant_identifier_names: false
+    file_names: false
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

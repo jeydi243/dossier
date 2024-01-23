@@ -1,6 +1,6 @@
 // ignore_for_file: override_on_non_overriding_member
 
-import 'package:dossier/models/partenaire.dart';
+import 'package:dossier/models/Partenaire.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
