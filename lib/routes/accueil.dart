@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
-import 'package:colorful_iconify_flutter/icons/emojione.dart';
 
 class Accueil extends StatefulWidget {
   const Accueil({super.key});

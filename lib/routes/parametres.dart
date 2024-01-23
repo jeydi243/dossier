@@ -10,24 +10,24 @@ class Parametres extends StatefulWidget {
 
 class _ParametresState extends State<Parametres> {
   open() {
-    WoltModalSheet.show(
-      pageIndexNotifier: 1,
-      context: context,
-      decorator: (child) {
-        return ChangeNotifierProvider<StoreOnlineViewModel>.value(
-          value: model,
-          builder: (_, __) => child,
-        );
-      },
-      pageListBuilder: AddWaterModalPageBuilder.build(
-        coffeeOrderId: coffeeOrderId,
-        goToPreviousPage: () =>
-            pageIndexNotifier.value = pageIndexNotifier.value - 1,
-        goToNextPage: () =>
-            pageIndexNotifier.value = pageIndexNotifier.value + 1,
-      ),
-      modalTypeBuilder: _modalTypeBuilder,
-    );
+    // WoltModalSheet.show(
+    //   pageIndexNotifier: 1,
+    //   context: context,
+    //   decorator: (child) {
+    //     return ChangeNotifierProvider<StoreOnlineViewModel>.value(
+    //       value: model,
+    //       builder: (_, __) => child,
+    //     );
+    //   },
+    //   pageListBuilder: AddWaterModalPageBuilder.build(
+    //     coffeeOrderId: coffeeOrderId,
+    //     goToPreviousPage: () =>
+    //         pageIndexNotifier.value = pageIndexNotifier.value - 1,
+    //     goToNextPage: () =>
+    //         pageIndexNotifier.value = pageIndexNotifier.value + 1,
+    //   ),
+    //   modalTypeBuilder: _modalTypeBuilder,
+    // );
   }
 
   @override

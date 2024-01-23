@@ -54,6 +54,7 @@ class _MyAppState extends State<MyApp> with WindowListener {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      
       title: 'Dossier',
       initialRoute: '/', debugShowCheckedModeBanner: false,
       routes: {
@@ -69,118 +70,8 @@ class _MyAppState extends State<MyApp> with WindowListener {
   }
 
   @override
-  void onWindowClose() {
-    // do something
-  }
-
-  @override
-  void onWindowFocus() {
-    // do something
-  }
-
-  @override
-  void onWindowBlur() {
-    // do something
-  }
-}
-
-class Home extends StatefulWidget {
-  const Home({super.key, required this.title});
-  final String title;
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> with WindowListener {
-  int counter = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    AuthController ac = Get.find();
-    return Scaffold(
-      drawer: Drawer(child: Container()),
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'data from supabase: ${ac.getData()}',
-            ),
-            Text(
-              '$counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    windowManager.addListener(this);
-  }
-
-  @override
-  void dispose() {
-    windowManager.removeListener(this);
-    super.dispose();
-  }
-
-  @override
-  void onWindowEvent(String eventName) {
-    print('[WindowManager] onWindowEvent: $eventName');
-  }
-
-  @override
-  void onWindowClose() {
-    // do something
-  }
-
-  @override
-  void onWindowFocus() {
-    // do something
-  }
-
-  @override
-  void onWindowBlur() {
-    // do something
-  }
-
-  @override
-  void onWindowMaximize() {
-    // do something
-  }
-
-  @override
-  void onWindowUnmaximize() {
-    // do something
-  }
-
-  @override
-  void onWindowMinimize() {
-    // do something
-  }
-
-  @override
-  void onWindowRestore() {
-    // do something
-  }
-
-  @override
   void onWindowResize() {
-    // do something
+    print('Resize finish....');
   }
 
   @override
@@ -192,18 +83,18 @@ class _HomeState extends State<Home> with WindowListener {
   void onWindowEnterFullScreen() {
     // do something
   }
-
   @override
-  void onWindowLeaveFullScreen() {
+  void onWindowClose() {
     // do something
   }
 
   @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
-    Window.setEffect(
-      effect: WindowEffect.mica,
-      dark: true,
-    ).catchError((e) {});
+  void onWindowFocus() {
+    // do something
+  }
+
+  @override
+  void onWindowBlur() {
+    // do something
   }
 }

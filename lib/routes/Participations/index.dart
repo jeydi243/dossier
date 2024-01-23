@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:dossier/datasources/partenairesDS.dart';
 import 'package:dossier/models/partenaire.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:get/get.dart';
+import 'package:simple_animations/animation_builder/play_animation_builder.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class IndexParticipation extends StatefulWidget {
@@ -59,8 +62,9 @@ class _IndexParticipationState extends State<IndexParticipation> {
     }
   ];
   List<Partenaire> partenaires = <Partenaire>[];
-
+  GlobalKey<SliderDrawerState> _key = GlobalKey<SliderDrawerState>();
   late PartenaireDataSource partDS;
+  final OverlayPortalController _tooltipController = OverlayPortalController();
 
   @override
   void initState() {
@@ -100,68 +104,131 @@ class _IndexParticipationState extends State<IndexParticipation> {
         length: 7,
         child: Scaffold(
           backgroundColor: const Color.fromARGB(255, 244, 246, 247),
-          body: Row(
-            children: [
-              Container(
-                  decoration: BoxDecoration(color: Colors.teal),
-                  height: Get.height,
-                  width: Get.size.width * .2),
-              Container(
-                width: Get.size.width * .8,
-                child: Column(
-                  children: [
-                    TabBar(
-                      tabs: [
-                        ...myTabs.map((e) => Tab(text: e['title'])).toList(),
+          body: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              return Row(
+                children: [
+                  OverlayPortal(
+                    controller: _tooltipController,
+                    overlayChildBuilder: (BuildContext context) {
+                      return PlayAnimationBuilder(
+                          tween: Tween<double>(begin: 1.5, end: 1),
+                          duration: 100.milliseconds,
+                          builder: (ctx, value, _) {
+                            return BlurryContainer(
+                              blur: 5,
+                              child: FractionallySizedBox(
+                                alignment: Alignment(value, 1),
+                                widthFactor: .2,
+                                heightFactor: 1,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.green[50],
+                                      ),
+                                  width: 100,
+                                  height: 300,
+                                  child: GestureDetector(
+                                    child: Text('It work 2024'),
+                                    onTap: () {
+                                      _tooltipController.hide();
+                                    },
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          onCompleted: () {
+                            // do something ...
+                            print('Animation finish...');
+                          });
+                    },
+                    child: Container(
+                        decoration: BoxDecoration(color: Colors.teal),
+                        height: Get.height,
+                        width: constraints.maxWidth * .2),
+                  ),
+                  Container(
+                    width: constraints.maxWidth * .8,
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        TabBar(
+                          tabs: [
+                            ...myTabs
+                                .map((e) => Tab(text: e['title']))
+                                .toList(),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Expanded(
+                          child: TabBarView(children: [
+                            ...myTabs
+                                .map((e) => Container(
+                                      color: Colors.white,
+                                      child: SfDataGrid(
+                                        source: partDS,
+                                        allowSorting: true,
+                                        allowMultiColumnSorting: true,
+                                        gridLinesVisibility:
+                                            GridLinesVisibility.none,
+                                        selectionMode: SelectionMode.single,
+                                        onCellTap: (f) {
+                                          // _key.currentState?.toggle();
+                                          _tooltipController.toggle();
+                                        },
+                                        verticalScrollPhysics:
+                                            BouncingScrollPhysics(),
+                                        columns: [
+                                          GridColumn(
+                                              columnName: 'id',
+                                              label: Container(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: Text(
+                                                    'ID',
+                                                  ))),
+                                          GridColumn(
+                                              columnName: 'name',
+                                              label: Container(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text('Name'))),
+                                          GridColumn(
+                                              columnName: 'designation',
+                                              width: 120,
+                                              label: Container(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text('Designation'))),
+                                          GridColumn(
+                                              columnName: 'capital_social_cdf',
+                                              label: Container(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: Text(
+                                                      'capital_social_cdf'))),
+                                          GridColumn(
+                                              columnName: 'actions',
+                                              label: Container(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  alignment: Alignment.center,
+                                                  child: Text('Actions'))),
+                                        ],
+                                      ),
+                                    ))
+                                .toList()
+                          ]),
+                        )
                       ],
                     ),
-                    SizedBox(height: 10),
-                    Expanded(
-                      child: TabBarView(children: [
-                        ...myTabs
-                            .map((e) => Container(
-                                  color: Colors.white,
-                                  child: SfDataGrid(
-                                    source: partDS,
-                                    
-                                    columns: [
-                                      GridColumn(
-                                          columnName: 'id',
-                                          label: Container(
-                                              padding: EdgeInsets.all(16.0),
-                                              alignment: Alignment.centerRight,
-                                              child: Text(
-                                                'ID',
-                                              ))),
-                                      GridColumn(
-                                          columnName: 'name',
-                                          label: Container(
-                                              padding: EdgeInsets.all(16.0),
-                                              alignment: Alignment.centerLeft,
-                                              child: Text('Name'))),
-                                      GridColumn(
-                                          columnName: 'designation',
-                                          width: 120,
-                                          label: Container(
-                                              padding: EdgeInsets.all(16.0),
-                                              alignment: Alignment.centerLeft,
-                                              child: Text('Designation'))),
-                                      GridColumn(
-                                          columnName: 'capital_social_cdf',
-                                          label: Container(
-                                              padding: EdgeInsets.all(16.0),
-                                              alignment: Alignment.centerRight,
-                                              child: Text('capital_social_cdf'))),
-                                    ],
-                                  ),
-                                ))
-                            .toList()
-                      ]),
-                    )
-                  ],
-                ),
-              ),
-            ],
+                  ),
+                ],
+              );
+            },
           ),
         ));
   }

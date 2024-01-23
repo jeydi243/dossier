@@ -51,4 +51,21 @@ class Partenaire {
       this.capital_social_cdf,
       this.fond_propre_usd,
       this.fond_propre_cdf});
+
+  //to json
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'designation': designation,
+        'entreprise_id': entreprise_id,
+        'created': created,
+        'created_by': created_by,
+        'updated': updated,
+        'updated_by': updated_by,
+        'description': description,
+        'forme_juridique': forme_juridique,
+        'code_partenaire': code_partenaire,
+        'est_partenariat': est_partenariat
+      };
 }

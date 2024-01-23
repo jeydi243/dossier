@@ -2,7 +2,9 @@
 
 import 'package:dossier/models/partenaire.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 class PartenaireDataSource extends DataGridSource {
   PartenaireDataSource({required List<Partenaire> partenaires}) {
@@ -15,6 +17,8 @@ class PartenaireDataSource extends DataGridSource {
               DataGridCell<int>(
                   columnName: 'capital_social_cdf',
                   value: e.capital_social_cdf),
+              DataGridCell<Map<String, dynamic>>(
+                  columnName: 'actions', value: e.toJson()),
             ]))
         .toList();
   }
@@ -34,8 +38,24 @@ class PartenaireDataSource extends DataGridSource {
             ? Alignment.centerRight
             : Alignment.centerLeft,
         padding: EdgeInsets.all(16.0),
-        child: Text(dataGridCell.value.toString()),
+        child: dataGridCell.columnName == 'actions'
+            ? ElevatedButton(
+                onPressed: () {
+                  print(dataGridCell.value);
+                  openModal();
+                },
+                child: Text('Edit'),
+              )
+            : Text(dataGridCell.value.toString()),
       );
     }).toList());
+  }
+
+  openModal() async {
+    // Get.snackbar('Lerler', "A verifier");
+    await Get.defaultDialog(
+        content: Container(
+      child: Text('Le text'),
+    ));
   }
 }
