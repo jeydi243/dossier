@@ -3,6 +3,7 @@
 import 'package:dossier/routes/Participations/index.dart';
 import 'package:dossier/routes/accueil.dart';
 import 'package:dossier/services/authController.dart';
+import 'package:dossier/services/contratController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -10,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:window_manager/window_manager.dart';
 
-const supabaseUrl = 'https://iauzdwzywquyfissqgpc.supabase.co';
+const String supabaseUrl = 'https://iauzdwzywquyfissqgpc.supabase.co';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
@@ -39,6 +40,7 @@ Future<void> main() async {
     color: Color(0xCC222222),
   );
   Get.put(AuthController());
+  Get.put(ContratController());
   runApp(const MyApp());
 }
 
@@ -54,7 +56,6 @@ class _MyAppState extends State<MyApp> with WindowListener {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      
       title: 'Dossier',
       initialRoute: '/', debugShowCheckedModeBanner: false,
       routes: {

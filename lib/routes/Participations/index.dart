@@ -3,6 +3,7 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:dossier/datasources/partenairesDS.dart';
 import 'package:dossier/models/Partenaire.dart';
+import 'package:dossier/routes/Participations/addNewContrat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:get/get.dart';
@@ -123,12 +124,12 @@ class _IndexParticipationState extends State<IndexParticipation> {
                                 heightFactor: 1,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: Colors.green[50],
-                                      ),
+                                    color: Colors.green[50],
+                                  ),
                                   width: 100,
                                   height: 300,
                                   child: GestureDetector(
-                                    child: Text('It work 2024'),
+                                    child: AddNewContrat(),
                                     onTap: () {
                                       _tooltipController.hide();
                                     },
