@@ -5,8 +5,21 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "dossier",
+      "name": "Run on Mobile ",
       "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "Run on desktop ",
+      "request": "launch",
+      "deviceId": "windows",
+      "args": ["--hot"],
+      "type": "dart"
+    },
+    {
+      "name": "Run on web ",
+      "request": "launch",
+      "deviceId": "chrome",
       "type": "dart"
     },
     {

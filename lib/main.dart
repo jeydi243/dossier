@@ -1,17 +1,20 @@
 // ignore_for_file: prefer_const_constructors, unused_element
 
-import 'package:dossier/routes/Participations/index.dart';
+import 'package:dossier/routes/Participations/indexParticipations.dart';
+import 'package:dossier/services/utilController.dart';
+import 'package:get/get.dart';
 import 'package:dossier/routes/accueil.dart';
 import 'package:dossier/services/authController.dart';
 import 'package:dossier/services/contratController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:window_manager/window_manager.dart';
 
 const String supabaseUrl = 'https://iauzdwzywquyfissqgpc.supabase.co';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
@@ -41,6 +44,7 @@ Future<void> main() async {
   );
   Get.put(AuthController());
   Get.put(ContratController());
+  Get.put(UtilController());
   runApp(const MyApp());
 }
 
@@ -63,9 +67,15 @@ class _MyAppState extends State<MyApp> with WindowListener {
         '/participations': (ctx) => IndexParticipation(),
       },
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
-        useMaterial3: true,
-      ),
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Color.fromARGB(255, 247, 232, 229)),
+          textTheme: GoogleFonts.k2dTextTheme(),
+          useMaterial3: false,
+          tabBarTheme: TabBarTheme(labelColor: Colors.black),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ButtonStyle(
+                  minimumSize:
+                      MaterialStateProperty.all<Size>(Size(100, 40))))),
       // home: const Home(title: 'Dossier'),
     );
   }

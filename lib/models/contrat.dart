@@ -1,3 +1,6 @@
+import "dart:core";
+import 'package:get/get.dart';
+
 class Contrat implements Comparable<Contrat> {
   String name;
   late int contrat_id;
@@ -11,7 +14,7 @@ class Contrat implements Comparable<Contrat> {
   late DateTime? date_approved;
   late DateTime? datetime_canceled;
   late DateTime? date_signed;
-  DateTime date_terminated;
+  DateTime? date_terminated;
   String? statut;
   int? periode_reconduction_jours;
   int? contrat_parent_id;
@@ -38,7 +41,7 @@ class Contrat implements Comparable<Contrat> {
       this.date_approved,
       this.datetime_canceled,
       this.date_signed,
-      required this.date_terminated,
+      this.date_terminated,
       this.statut,
       this.periode_reconduction_jours,
       this.contrat_parent_id,
@@ -61,4 +64,7 @@ class Contrat implements Comparable<Contrat> {
   Map<String, dynamic> toJson() => {
         "contrat_id": contrat_id,
       };
+  static List<String> toStatic() => [
+        // {name: "name", type: 'int'}
+      ];
 }

@@ -3,7 +3,9 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  file_selector_linux
   flutter_acrylic
+  gtk
   printing
   screen_retriever
   url_launcher_linux

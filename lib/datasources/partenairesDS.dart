@@ -4,7 +4,6 @@ import 'package:dossier/models/Partenaire.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 class PartenaireDataSource extends DataGridSource {
   PartenaireDataSource({required List<Partenaire> partenaires}) {
